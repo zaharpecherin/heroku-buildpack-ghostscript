@@ -4,7 +4,6 @@
 echo "-----> Installing Ghostscript 9.10"
 
 cd $1
-curl http://vulcan-elbongurk.herokuapp.com/output/7720a18a-a89c-4ab0-8555-ef80378d1240 -s -o gs.tgz
+curl https://github.com/elbongurk/heroku-buildpack-ghostscript/releases/download/v1.0.0/ghostscript.tgz -s -O
 mkdir -p vendor/gs
-tar -C vendor/gs -xvf gs.tgz
-
+tar -C vendor/gs -xvf ghostscript.tgz
