@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+echo "-----> Installing Ghostscript 9.10"
+
+cd $1
+curl http://vulcan-elbongurk.herokuapp.com/output/7720a18a-a89c-4ab0-8555-ef80378d1240 -s -o gs.tgz
+mkdir -p vendor/gs
+tar -C vendor/gs -xvf gs.tgz
+
