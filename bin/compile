@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
-echo "-----> Installing Ghostscript 9.10"
+echo "-----> Installing Ghostscript 9.14"
 
 BUILD_DIR=$1
 PACKAGE="https://elbongurk-public.s3.amazonaws.com/ghostscript.tgz"
