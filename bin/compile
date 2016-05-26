@@ -4,7 +4,7 @@
 echo "-----> Installing Ghostscript 9.19"
 
 BUILD_DIR=$1
-PACKAGE="https://assets.imdpinga.com/heroku_buildpacks/ghostscript_9.19.tgz"
+PACKAGE="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs919/ghostscript-9.19-linux-x86_64.tgz"
 LOCATION="$BUILD_DIR/vendor/gs"
 
 mkdir -p $LOCATION
