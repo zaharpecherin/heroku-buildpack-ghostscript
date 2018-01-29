@@ -43,7 +43,7 @@ echo "Setting up ghostscript environment" | indent
 cp -R $GS_VENDOR/bin/* $BUILD_DIR/bin/
 
 mkdir -p $BUILD_DIR/.profile.d
-echo 'export PATH="$BUILD_DIR/bin:$PATH"' > $BUILD_DIR/.profile.d/ghostscript.sh
+echo 'export PATH="$HOME/bin:$PATH"' > $BUILD_DIR/.profile.d/ghostscript.sh
 
 cat <<EOF > export
 export PATH=$BUILD_DIR/bin:$PATH
