@@ -1,20 +1,44 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # bin/compile <build-dir> <cache-dir>
 
-echo "-----> Installing Ghostscript 9.22 using build directory $1"
+set -e
 
 BUILD_DIR=$1
-PACKAGE="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs922/ghostpcl-9.22-linux-x86_64.tgz"
-BINARY="ghostpcl-9.22-linux-x86_64/gpcl6-922-linux-x86_64"
-LOCATION="$BUILD_DIR/vendor/gs"
 
-cd $BUILD_DIR
-mkdir -p $LOCATION/bin
-wget -O gs.tgz $PACKAGE # Couldn't get curl to work for some reason
-tar xvf gs.tgz
-mv $BINARY $LOCATION/bin/gs
+indent() {
+  sed -u 's/^/       /'
+}
 
-echo "-----> Building runtime environment for Ghostscript to $LOCATION"
+arrow() {
+  sed -u 's/^/-----> /'
+}
+
+echo "Installing Ghostscript 9.22 using build directory $1" | arrow
+
+PACKAGE="https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs922/ghostscript-9.22-linux-x86_64.tgz"
+GS_VENDOR="$BUILD_DIR/vendor/ghostscript"
+GS_SOURCE_DIR="ghostscript-9.22-linux-x86_64"
+GS_SOURCE_BINARY="$GS_SOURCE_DIR/gs-922-linux-x86_64"
+
+rm -rf $GS_VENDOR/*
+mkdir -p $GS_VENDOR/bin
+cd $GS_VENDOR
+
+GS_LOCAL="$GS_VENDOR/ghostscript.tar.gz"
+
+echo "Fetching ghostscript binaries" | indent
+curl -L $PACKAGE > $GS_LOCAL
+
+echo "Extracting binaries to $GS_VENDOR" | indent
+tar -xzf $GS_LOCAL
+
+echo "Ghostscript binary available in $GS_VENDOR/bin" | indent
+mv $GS_SOURCE_BINARY $GS_VENDOR/bin/gs
+
+# Cleanup
+rm $GS_LOCAL
+rm -rf $GS_SOURCE_DIR
+
 
 mkdir -p $BUILD_DIR/.profile.d
-echo "export PATH=\"\$HOME/vendor/gs/bin:\$PATH\"" > $BUILD_DIR/.profile.d/ghostscript.sh
+echo 'export PATH="$HOME/vendor/ghostscript/bin:$PATH"' > $BUILD_DIR/.profile.d/ghostscript.sh
