@@ -10,6 +10,4 @@ Currently installs Ghostscript 9.22 on Heroku Cedar.
     # Push changes to deploy
     $ git push
 
-    # This version of ghostscript will end up deployed at /app/vendor/gs/bin/gs
-    # So you _may_ want to set an environment variable to let your app know where it is. e.g.
-    $ heroku config:set GS_PATH=/app/vendor/gs/bin/gs
+    # This version of ghostscript will end up deployed at /app/vendor/ghostscript/bin/gs
