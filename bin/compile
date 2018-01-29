@@ -40,10 +40,10 @@ rm -rf $GS_SOURCE_DIR
 mkdir -p $BUILD_DIR/bin
 
 echo "Setting up ghostscript environment" | indent
-ln -sf $GS_VENDOR/bin/* $HOME/bin/
+ln -sf $GS_VENDOR/bin/* $BUILD_DIR/bin/
 
 mkdir -p $BUILD_DIR/.profile.d
-echo 'export PATH="$HOME/bin:$PATH"' > $BUILD_DIR/.profile.d/ghostscript.sh
+echo 'export PATH="$BUILD_DIR/bin:$PATH"' > $BUILD_DIR/.profile.d/ghostscript.sh
 
 cat <<EOF > export
 export PATH=$BUILD_DIR/bin:$PATH
